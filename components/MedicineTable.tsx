@@ -29,25 +29,25 @@ export default function MedicineTable({
 }) {
   if (medicines.length === 0) {
     return (
-      <div className="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center text-sm text-slate-500">
+      <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-sm text-slate-500">
         No items in this group.
       </div>
     );
   }
 
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-      <table className="min-w-full divide-y divide-slate-200 text-sm">
-        <thead className="bg-slate-50">
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <table className="min-w-full divide-y divide-slate-100 text-sm">
+        <thead className="bg-slate-50/70">
           <tr>
-            <th className="px-4 py-3 text-left font-medium text-slate-500">Medicine</th>
-            <th className="px-4 py-3 text-left font-medium text-slate-500">Batch</th>
-            <th className="px-4 py-3 text-right font-medium text-slate-500">Qty</th>
-            <th className="px-4 py-3 text-right font-medium text-slate-500">Unit price</th>
-            <th className="px-4 py-3 text-right font-medium text-slate-500">Value</th>
-            <th className="px-4 py-3 text-left font-medium text-slate-500">Expiry</th>
-            <th className="px-4 py-3 text-left font-medium text-slate-500">Status</th>
-            {showReturnAction && <th className="px-4 py-3 text-right font-medium text-slate-500">Action</th>}
+            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">Medicine</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">Batch</th>
+            <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-400">Qty</th>
+            <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-400">Unit price</th>
+            <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-400">Value</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">Expiry</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">Status</th>
+            {showReturnAction && <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-400">Action</th>}
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-100">

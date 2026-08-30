@@ -23,3 +23,22 @@ export async function getMedicines(): Promise<Medicine[]> {
 export async function markAsReturned(id: string): Promise<void> {
   await returnToDistributor(id);
 }
+
+export interface NewMedicineInput {
+  name: string;
+  batch: string;
+  quantity: number;
+  unit_price_bdt: number;
+  expiry_date: string;
+}
+
+export async function addMedicine(input: NewMedicineInput): Promise<Medicine> {
+  const { data, error } = await supabase
+    .from("medicines")
+    .insert([{ ...input, status: "active" }])
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data as Medicine;
+}
