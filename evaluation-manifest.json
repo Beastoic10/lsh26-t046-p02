@@ -2,9 +2,9 @@
   "team_id": "LSH26-T046",
   "problem_id": "P02",
   "repository_name": "lsh26-t046-p02",
-  "live_url": "https://example.com",
+  "live_url": "https://lsh26-t046-p02-gamma.vercel.app/",
   "demo_video_url_optional": "",
-  "event_start_code": "<START-CODE>",
+  "event_start_code": "LSH26-8490-C900",
   "repository_created_before_release": false,
   "pre_event_materials": [],
   "sample_data": {
@@ -33,9 +33,40 @@
   },
   "team_members": [
     {
-      "registered_name": "<MEMBER NAME>",
-      "github_username": "<GITHUB USERNAME>",
-      "major_contribution": "Brief description of personal contribution",
+      "registered_name": "MD Azmain Sakin",
+      "github_username": "Beastoic10",
+      "major_contribution": "We split into teams of 2(2 members & 1 member); as the team member I helped with debugging issues from the terminal, setup the databases and made sure we are compliant. Did the 4 required files, and ensured all the rules and regulations were followed. Decided on the stack, BaaS & UI themes like claymorphism and glassmorphism",
+      "evidence_paths_or_commits": [
+        "LICENSES.md",
+            "README.md",
+            "evaluation-manifest",
+        "<commit SHA if helpful>"
+      ]
+    },
+    {
+      "registered_name": "Mahir Ahmed",
+      "github_username": "mahir817",
+      "major_contribution": "Worked with Farzat on the problem 1, confirmed all the requirements are met",
+      "evidence_paths_or_commits": [
+        "supabase/",
+        "3efcdf0b6802d0a94122428253a81cf3d05578be"
+      ]
+    },
+    {
+      "registered_name": "Farzat Amin",
+      "github_username": "farzatcodes",
+      "major_contribution": "Handles the UI of the project; implemented the ideas as presented by the team",
+      "evidence_paths_or_commits": [
+        "components/MedicineTable.tsx",
+        "components/StatCard.tsx",
+        "components/StatusBadge.tsx",
+        "b0b1f9f2c2abecfd8af4a8e410b03e68a3321daa"
+      ]
+    },
+    {
+      "registered_name": "Raiyan Islam Siyam",
+      "github_username": "RaiyanSiyam",
+      "major_contribution": "Didnt take part in this problem, worked in the other problem",
       "evidence_paths_or_commits": [
         "src/example-file",
         "<commit SHA if helpful>"
@@ -43,16 +74,16 @@
     }
   ],
   "major_design_decisions": [
-    "Decision and short reason"
+    "The problem was pretty straight forward, but due to the time constraint; we went with Backend-as-a-Service provider instead of crafting our own ERD,schema"
   ],
   "known_limitations": [
-    "Known limitation or unfinished behaviour"
+    "Some minor issues with the responsiveness."
   ],
   "ai_tools_used": [
     {
-      "tool": "<TOOL NAME>",
-      "used_for": "What the tool helped with",
-      "how_output_was_verified": "How the team checked the result"
+      "tool": "Chatgpt, gemini, claude, google antigravity",
+      "used_for": "For UI: Claude, rest of the models were used as required when issues arised",
+      "how_output_was_verified": "ran the .json file but before that used the manual check. Stocked and restocked stuff and checked integrity with the db"
     }
   ],
   "licenses_file": "LICENSES.md",
