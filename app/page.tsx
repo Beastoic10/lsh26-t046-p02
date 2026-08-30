@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { getMedicines } from "@/lib/data";
+import { useMemo, useState, useEffect } from "react";
+import { supabase } from "@/supabaseClient";
 import { classify, GROUP_LABEL } from "@/lib/classify";
 import { ExpiryGroup, Medicine } from "@/lib/types";
 import StatCard from "@/components/StatCard";
@@ -18,9 +18,21 @@ const GROUP_ACCENT: Record<ExpiryGroup, "red" | "amber" | "yellow" | "emerald"> 
 };
 
 export default function DashboardPage() {
-  const [medicines, setMedicines] = useState<Medicine[]>(() => getMedicines());
+  const [medicines, setMedicines] = useState<Medicine[]>([]);
   const [tab, setTab] = useState<Tab>("stock");
   const [groupFilter, setGroupFilter] = useState<ExpiryGroup | null>(null);
+
+  useEffect(() => {
+    async function loadMedicines() {
+      const { data, error } = await supabase.from("medicines").select("*");
+      if (error) {
+        console.error("Error fetching medicines:", error);
+      } else if (data) {
+        setMedicines(data as Medicine[]);
+      }
+    }
+    loadMedicines();
+  }, []);
 
   const active = useMemo(() => medicines.filter((m) => m.status === "active"), [medicines]);
   const returned = useMemo(() => medicines.filter((m) => m.status === "returned"), [medicines]);
@@ -41,10 +53,14 @@ export default function DashboardPage() {
 
   const visibleStock = groupFilter ? byGroup[groupFilter] : active;
 
-  function handleReturn(id: string) {
+  async function handleReturn(id: string) {
+    // Optimistic UI update
     setMedicines((prev) => prev.map((m) => (m.id === id ? { ...m, status: "returned" } : m)));
-    // Once Supabase is connected, fire the update alongside this:
-    // await supabase.from("medicines").update({ status: "returned" }).eq("id", id);
+    // Fire the update to Supabase
+    const { error } = await supabase.from("medicines").update({ status: "returned" }).eq("id", id);
+    if (error) {
+      console.error("Error returning medicine:", error);
+    }
   }
 
   return (
