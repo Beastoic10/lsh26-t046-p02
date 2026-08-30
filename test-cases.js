@@ -1,8 +1,8 @@
 const fs = require('fs');
 
 async function runTest() {
-    console.log('Reading cases.json...');
-    const data = fs.readFileSync('cases.json', 'utf8');
+    console.log('Reading P02_pharmacy_expiry_public.json...');
+    const data = fs.readFileSync('P02_pharmacy_expiry_public.json', 'utf8');
     const cases = JSON.parse(data);
     
     console.log(`Sending ${cases.cases.length} cases to the API...`);
