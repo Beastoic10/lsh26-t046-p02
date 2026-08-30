@@ -1,0 +1,4 @@
+Project ID : rzcpirtqrzanmzpunrhe
+Project region : ap-northeast-2
+API Key : sb_publishable_kt4-dSwbjOy4BKudAJLPYg_AfmLKX_K
+Secret Key : sb_secret_pnZ8taedfJaGcS7vVevX8w_bPBVW8ho
