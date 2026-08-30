@@ -194,6 +194,19 @@ export default function DashboardPage() {
 
           <div className="flex items-center gap-3">
             <SearchBox value={search} onChange={setSearch} />
+            {tab === "stock" && (
+              <select
+                value={groupFilter || ""}
+                onChange={(e) => setGroupFilter(e.target.value ? (e.target.value as ExpiryGroup) : null)}
+                className="clay-surface-pressed !rounded-xl border-0 bg-clay-surface2 px-3 py-2 text-sm text-clay-ink focus:outline-none"
+              >
+                <option value="">All Statuses</option>
+                <option value="safe">Safe</option>
+                <option value="mid90">Expiring within 90 days</option>
+                <option value="soon30">Expiring within 30 days</option>
+                <option value="expired">Expired</option>
+              </select>
+            )}
             {tab === "stock" && <QuickAddForm onAdded={handleAdded} />}
           </div>
         </div>
