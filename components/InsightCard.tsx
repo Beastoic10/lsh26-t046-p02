@@ -16,8 +16,14 @@ export default function InsightCard({
   atRiskValue: number;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-600 via-indigo-600 to-purple-700 p-5 text-white shadow-sm">
-      <div className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-1 text-xs font-medium">
+    <div
+      className="relative flex h-full flex-col overflow-hidden p-6 text-clay-surface shadow-clay"
+      style={{
+        borderRadius: "1.75rem",
+        background: "linear-gradient(135deg, #8F3B33 0%, #C1544A 55%, #D9A24B 100%)",
+      }}
+    >
+      <div className="clay-pill mb-3 inline-flex w-fit items-center gap-1.5 bg-white/15 px-3 py-1 text-xs font-medium shadow-none">
         <svg viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5" stroke="currentColor" strokeWidth={2}>
           <path
             strokeLinecap="round"
@@ -31,7 +37,7 @@ export default function InsightCard({
       <p className="mt-2 text-sm font-medium leading-snug text-white/90">
         of active stock value is expired or expiring within 30 days.
       </p>
-      <p className="mt-3 text-xs leading-relaxed text-white/70">
+      <p className="mt-auto pt-3 text-xs leading-relaxed text-white/75">
         {atRiskItemCount} item{atRiskItemCount === 1 ? "" : "s"} worth {formatBDT(atRiskValue)} need
         action now.
       </p>

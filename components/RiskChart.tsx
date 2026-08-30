@@ -19,20 +19,20 @@ function formatCompactBDT(value: number): string {
 
 export default function RiskChart({ data }: { data: MonthlyBucket[] }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <h2 className="mb-4 text-sm font-medium text-slate-500">Value at risk, next 6 months</h2>
+    <div className="clay-surface h-full p-6">
+      <h2 className="mb-4 text-sm font-medium text-clay-ink2">Value at risk, next 6 months</h2>
       <div className="h-56 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 4, right: 8, left: -16, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eef2f7" />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#DCC9AC" />
             <XAxis
               dataKey="label"
-              tick={{ fontSize: 12, fill: "#94a3b8" }}
-              axisLine={{ stroke: "#eef2f7" }}
+              tick={{ fontSize: 12, fill: "#8A7A67" }}
+              axisLine={{ stroke: "#DCC9AC" }}
               tickLine={false}
             />
             <YAxis
-              tick={{ fontSize: 12, fill: "#94a3b8" }}
+              tick={{ fontSize: 12, fill: "#8A7A67" }}
               axisLine={false}
               tickLine={false}
               tickFormatter={formatCompactBDT}
@@ -40,15 +40,21 @@ export default function RiskChart({ data }: { data: MonthlyBucket[] }) {
             />
             <Tooltip
               formatter={(value) => [formatBDT(Number(value)), "Value at risk"]}
-              contentStyle={{ borderRadius: 10, border: "1px solid #eef2f7", fontSize: 12 }}
-              cursor={{ fill: "#f8fafc" }}
+              contentStyle={{
+                borderRadius: 12,
+                border: "none",
+                fontSize: 12,
+                background: "#F5EBDC",
+                boxShadow: "5px 5px 11px rgba(120,94,68,0.2), -4px -4px 9px rgba(255,255,255,0.7)",
+              }}
+              cursor={{ fill: "#EEE0CB" }}
             />
-            <Bar dataKey="value" radius={[6, 6, 0, 0]}>
+            <Bar dataKey="value" radius={[8, 8, 0, 0]}>
               {data.map((entry, index) => (
-                // Current month reads darker/solid; the further-out months
-                // fade — a lighter echo of the "which stage is selected"
-                // treatment, but here it signals "this month is now."
-                <Cell key={entry.label} fill={index === 0 ? "#4f46e5" : "#c7d2fe"} />
+                // Current month reads solid terracotta; the further-out
+                // months fade to a lighter clay tone — a soft echo of the
+                // "which stage is selected" treatment, signaling "now."
+                <Cell key={entry.label} fill={index === 0 ? "#C1544A" : "#E2A39C"} />
               ))}
             </Bar>
           </BarChart>

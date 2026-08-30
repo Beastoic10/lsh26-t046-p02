@@ -14,16 +14,18 @@ export default function DotHistogram({
       {data.map((d) => {
         const dots = d.count === 0 ? 0 : Math.max(1, Math.round((d.count / max) * maxDots));
         return (
-          <div key={d.label} className="flex flex-1 flex-col items-center gap-1.5">
-            <div className="flex flex-col-reverse gap-1">
+          <div key={d.label} className="flex flex-1 flex-col items-center gap-2">
+            <div className="flex flex-col-reverse gap-1.5">
               {Array.from({ length: maxDots }, (_, i) => (
                 <span
                   key={i}
-                  className={`h-1.5 w-1.5 rounded-full ${i < dots ? colorClass : "bg-slate-200/60"}`}
+                  className={`h-2 w-2 rounded-full ${
+                    i < dots ? `${colorClass} shadow-clay-sm` : "bg-clay-surface2 shadow-clay-inset"
+                  }`}
                 />
               ))}
             </div>
-            <span className="text-[10px] font-medium text-slate-400">{d.label.split(" ")[0]}</span>
+            <span className="text-[10px] font-medium text-clay-ink2">{d.label.split(" ")[0]}</span>
           </div>
         );
       })}

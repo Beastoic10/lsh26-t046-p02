@@ -91,7 +91,7 @@ export default function QuickAddForm({ onAdded }: { onAdded: (medicine: Medicine
     return (
       <button
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
+        className="clay-pill inline-flex items-center gap-1.5 bg-clay-sage px-5 py-2.5 text-sm font-medium text-white transition hover:brightness-105"
       >
         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
@@ -104,53 +104,53 @@ export default function QuickAddForm({ onAdded }: { onAdded: (medicine: Medicine
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+      className="clay-surface p-6"
     >
       <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-sm font-medium text-slate-700">Add medicine</h2>
+        <h2 className="text-sm font-medium text-clay-ink">Add medicine</h2>
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="text-sm text-slate-400 hover:text-slate-600"
+          className="text-sm text-clay-ink2 hover:text-clay-ink"
         >
           Cancel
         </button>
       </div>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <label className="flex flex-col gap-1 text-xs font-medium text-slate-500">
+        <label className="flex flex-col gap-1.5 text-xs font-medium text-clay-ink2">
           Name
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            className="clay-surface-pressed !rounded-xl border-0 bg-clay-surface2 px-3 py-2 text-sm text-clay-ink focus:outline-none"
             placeholder="e.g. Napa 500mg"
           />
         </label>
 
-        <label className="flex flex-col gap-1 text-xs font-medium text-slate-500">
+        <label className="flex flex-col gap-1.5 text-xs font-medium text-clay-ink2">
           Batch
           <input
             value={batch}
             onChange={(e) => setBatch(e.target.value)}
-            className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            className="clay-surface-pressed !rounded-xl border-0 bg-clay-surface2 px-3 py-2 text-sm text-clay-ink focus:outline-none"
             placeholder="e.g. B2451-3"
           />
         </label>
 
-        <label className="flex flex-col gap-1 text-xs font-medium text-slate-500">
+        <label className="flex flex-col gap-1.5 text-xs font-medium text-clay-ink2">
           Quantity
           <input
             type="number"
             min="1"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
-            className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            className="clay-surface-pressed !rounded-xl border-0 bg-clay-surface2 px-3 py-2 text-sm text-clay-ink focus:outline-none"
             placeholder="e.g. 100"
           />
         </label>
 
-        <label className="flex flex-col gap-1 text-xs font-medium text-slate-500">
+        <label className="flex flex-col gap-1.5 text-xs font-medium text-clay-ink2">
           Unit price (BDT)
           <input
             type="number"
@@ -158,17 +158,17 @@ export default function QuickAddForm({ onAdded }: { onAdded: (medicine: Medicine
             step="0.01"
             value={unitPrice}
             onChange={(e) => setUnitPrice(e.target.value)}
-            className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            className="clay-surface-pressed !rounded-xl border-0 bg-clay-surface2 px-3 py-2 text-sm text-clay-ink focus:outline-none"
             placeholder="e.g. 5.50"
           />
         </label>
 
-        <label className="flex flex-col gap-1 text-xs font-medium text-slate-500">
+        <label className="flex flex-col gap-1.5 text-xs font-medium text-clay-ink2">
           Shelf life
           <select
             value={shelfLifeMonths}
             onChange={(e) => handleShelfLifeChange(Number(e.target.value))}
-            className="rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-sm text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            className="clay-surface-pressed !rounded-xl border-0 bg-clay-surface2 px-3 py-2 text-sm text-clay-ink focus:outline-none"
           >
             {SHELF_LIFE_OPTIONS.map((opt) => (
               <option key={opt.months} value={opt.months}>
@@ -179,13 +179,13 @@ export default function QuickAddForm({ onAdded }: { onAdded: (medicine: Medicine
           </select>
         </label>
 
-        <label className="flex flex-col gap-1 text-xs font-medium text-slate-500">
+        <label className="flex flex-col gap-1.5 text-xs font-medium text-clay-ink2">
           Expiry date
           <input
             type="date"
             value={expiryDate}
             onChange={(e) => setExpiryDate(e.target.value)}
-            className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            className="clay-surface-pressed !rounded-xl border-0 bg-clay-surface2 px-3 py-2 text-sm text-clay-ink focus:outline-none"
           />
         </label>
 
@@ -193,19 +193,19 @@ export default function QuickAddForm({ onAdded }: { onAdded: (medicine: Medicine
           <button
             type="submit"
             disabled={submitting}
-            className="w-full rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="clay-pill w-full !rounded-xl bg-clay-terracotta px-3 py-2 text-sm font-medium text-white transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {submitting ? "Adding…" : "Add to shelf"}
           </button>
         </div>
       </div>
 
-      <p className="mt-2 text-xs text-slate-400">
+      <p className="mt-3 text-xs text-clay-ink2">
         Shelf life defaults to {DEFAULT_MONTHS / 12} years and fills in the expiry date — pick a
         different preset or edit the date directly for anything unusual.
       </p>
 
-      {error && <p className="mt-2 text-xs font-medium text-red-600">{error}</p>}
+      {error && <p className="mt-2 text-xs font-medium text-clay-terracotta-dark">{error}</p>}
     </form>
   );
 }

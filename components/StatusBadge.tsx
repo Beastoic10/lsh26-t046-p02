@@ -1,10 +1,10 @@
 import { ExpiryGroup } from "@/lib/types";
 
 const STYLES: Record<ExpiryGroup, string> = {
-  expired: "bg-red-50 text-red-700 ring-red-600/20",
-  soon30: "bg-amber-50 text-amber-700 ring-amber-600/20",
-  mid90: "bg-yellow-50 text-yellow-800 ring-yellow-600/20",
-  safe: "bg-emerald-50 text-emerald-700 ring-emerald-600/20",
+  expired: "bg-clay-terracotta text-white",
+  soon30: "bg-clay-mustard text-white",
+  mid90: "bg-clay-olive text-white",
+  safe: "bg-clay-sage text-white",
 };
 
 const LABELS: Record<ExpiryGroup, string> = {
@@ -17,7 +17,7 @@ const LABELS: Record<ExpiryGroup, string> = {
 export default function StatusBadge({ group }: { group: ExpiryGroup }) {
   return (
     <span
-      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset ${STYLES[group]}`}
+      className={`clay-pill inline-flex items-center px-3 py-1 text-xs font-medium shadow-clay-sm ${STYLES[group]}`}
     >
       {LABELS[group]}
     </span>

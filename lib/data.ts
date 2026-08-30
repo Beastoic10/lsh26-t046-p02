@@ -1,5 +1,6 @@
 import { supabase, returnToDistributor } from "../supabaseClient";
 import { Medicine } from "./types";
+import { INITIAL_SEED } from "./seedData";
 
 /**
  * Fetches every row (active + returned) so the dashboard can derive both
@@ -41,4 +42,23 @@ export async function addMedicine(input: NewMedicineInput): Promise<Medicine> {
 
   if (error) throw error;
   return data as Medicine;
+}
+
+/**
+ * Wipes the medicines table and re-inserts the exact rows from
+ * supabase/seed.sql (mirrored in lib/seedData.ts), so judges — or anyone
+ * testing the app — can undo every return and every quick-added item with
+ * one click and get back to the fixture the app ships with.
+ */
+export async function resetToInitialState(): Promise<Medicine[]> {
+  // Supabase requires a filter on delete; every row has a non-null id, so
+  // this clears the whole table without needing to know any ids up front.
+  const { error: deleteError } = await supabase.from("medicines").delete().not("id", "is", null);
+  if (deleteError) throw deleteError;
+
+  const rows = INITIAL_SEED.map((row) => ({ ...row, status: "active" as const }));
+  const { error: insertError } = await supabase.from("medicines").insert(rows);
+  if (insertError) throw insertError;
+
+  return getMedicines();
 }

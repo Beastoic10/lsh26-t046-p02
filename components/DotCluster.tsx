@@ -19,13 +19,15 @@ export default function DotCluster({
   const clampedFilled = Math.max(0, Math.min(filled, total));
   return (
     <div
-      className="grid gap-1"
+      className="grid gap-1.5"
       style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
     >
       {Array.from({ length: total }, (_, i) => (
         <span
           key={i}
-          className={`aspect-square rounded-full ${i < clampedFilled ? colorClass : "bg-slate-200/70"}`}
+          className={`aspect-square rounded-full ${
+            i < clampedFilled ? `${colorClass} shadow-clay-sm` : "bg-clay-surface2 shadow-clay-inset"
+          }`}
         />
       ))}
     </div>
