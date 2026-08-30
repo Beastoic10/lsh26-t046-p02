@@ -20,10 +20,12 @@ export default function MedicineTable({
   medicines,
   onReturn,
   showReturnAction = true,
+  pendingId = null,
 }: {
   medicines: Medicine[];
   onReturn?: (id: string) => void;
   showReturnAction?: boolean;
+  pendingId?: string | null;
 }) {
   if (medicines.length === 0) {
     return (
@@ -39,7 +41,6 @@ export default function MedicineTable({
         <thead className="bg-slate-50">
           <tr>
             <th className="px-4 py-3 text-left font-medium text-slate-500">Medicine</th>
-            <th className="px-4 py-3 text-left font-medium text-slate-500">Company</th>
             <th className="px-4 py-3 text-left font-medium text-slate-500">Batch</th>
             <th className="px-4 py-3 text-right font-medium text-slate-500">Qty</th>
             <th className="px-4 py-3 text-right font-medium text-slate-500">Unit price</th>
@@ -57,7 +58,6 @@ export default function MedicineTable({
             return (
               <tr key={m.id} className="hover:bg-slate-50">
                 <td className="px-4 py-3 font-medium text-slate-900">{m.name}</td>
-                <td className="px-4 py-3 text-slate-600">{m.company}</td>
                 <td className="px-4 py-3 font-mono text-xs text-slate-500">{m.batch}</td>
                 <td className="px-4 py-3 text-right tabular-nums text-slate-700">{m.quantity}</td>
                 <td className="px-4 py-3 text-right tabular-nums text-slate-700">
@@ -84,9 +84,10 @@ export default function MedicineTable({
                     {m.status === "active" && (
                       <button
                         onClick={() => onReturn?.(m.id)}
-                        className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                        disabled={pendingId === m.id}
+                        className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 disabled:cursor-not-allowed disabled:opacity-50"
                       >
-                        Mark returned
+                        {pendingId === m.id ? "Returning…" : "Mark returned"}
                       </button>
                     )}
                   </td>
