@@ -20,82 +20,90 @@ export default function MedicineTable({
   medicines,
   onReturn,
   showReturnAction = true,
+  pendingId = null,
 }: {
   medicines: Medicine[];
   onReturn?: (id: string) => void;
   showReturnAction?: boolean;
+  pendingId?: string | null;
 }) {
   if (medicines.length === 0) {
     return (
-      <div className="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center text-sm text-slate-500">
+      <div className="clay-surface-pressed p-10 text-center text-sm text-clay-ink2">
         No items in this group.
       </div>
     );
   }
 
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-      <table className="min-w-full divide-y divide-slate-200 text-sm">
-        <thead className="bg-slate-50">
-          <tr>
-            <th className="px-4 py-3 text-left font-medium text-slate-500">Medicine</th>
-            <th className="px-4 py-3 text-left font-medium text-slate-500">Company</th>
-            <th className="px-4 py-3 text-left font-medium text-slate-500">Batch</th>
-            <th className="px-4 py-3 text-right font-medium text-slate-500">Qty</th>
-            <th className="px-4 py-3 text-right font-medium text-slate-500">Unit price</th>
-            <th className="px-4 py-3 text-right font-medium text-slate-500">Value</th>
-            <th className="px-4 py-3 text-left font-medium text-slate-500">Expiry</th>
-            <th className="px-4 py-3 text-left font-medium text-slate-500">Status</th>
-            {showReturnAction && <th className="px-4 py-3 text-right font-medium text-slate-500">Action</th>}
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-slate-100">
-          {medicines.map((m) => {
-            const group = classify(m.expiry_date);
-            const left = daysLeft(m.expiry_date);
-            const value = m.quantity * m.unit_price_bdt;
-            return (
-              <tr key={m.id} className="hover:bg-slate-50">
-                <td className="px-4 py-3 font-medium text-slate-900">{m.name}</td>
-                <td className="px-4 py-3 text-slate-600">{m.company}</td>
-                <td className="px-4 py-3 font-mono text-xs text-slate-500">{m.batch}</td>
-                <td className="px-4 py-3 text-right tabular-nums text-slate-700">{m.quantity}</td>
-                <td className="px-4 py-3 text-right tabular-nums text-slate-700">
-                  {formatBDT(m.unit_price_bdt)}
-                </td>
-                <td className="px-4 py-3 text-right tabular-nums font-medium text-slate-900">
-                  {formatBDT(value)}
-                </td>
-                <td className="px-4 py-3 text-slate-600">
-                  <div>{m.expiry_date}</div>
-                  <div className="text-xs text-slate-400">{formatDaysLeft(left)}</div>
-                </td>
-                <td className="px-4 py-3">
-                  {m.status === "returned" ? (
-                    <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-400/20">
-                      Returned
-                    </span>
-                  ) : (
-                    <StatusBadge group={group} />
-                  )}
-                </td>
-                {showReturnAction && (
-                  <td className="px-4 py-3 text-right">
-                    {m.status === "active" && (
-                      <button
-                        onClick={() => onReturn?.(m.id)}
-                        className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
-                      >
-                        Mark returned
-                      </button>
-                    )}
-                  </td>
+    <div className="clay-surface overflow-hidden p-3">
+      {/* Column header row — kept as a lightweight label bar rather than a
+          grid header, so the emphasis stays on the puffy row cards below. */}
+      <div className="hidden grid-cols-[2fr_1fr_0.6fr_0.9fr_0.9fr_1.1fr_1fr_1fr] gap-3 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-clay-ink2 sm:grid">
+        <span>Medicine</span>
+        <span>Batch</span>
+        <span className="text-right">Qty</span>
+        <span className="text-right">Unit price</span>
+        <span className="text-right">Value</span>
+        <span>Expiry</span>
+        <span>Status</span>
+        {showReturnAction && <span className="text-right">Action</span>}
+      </div>
+
+      <div className="space-y-2">
+        {medicines.map((m) => {
+          const group = classify(m.expiry_date);
+          const left = daysLeft(m.expiry_date);
+          const value = m.quantity * m.unit_price_bdt;
+          return (
+            <div
+              key={m.id}
+              className="grid grid-cols-2 gap-3 rounded-2xl bg-clay-surface2 px-4 py-3 shadow-clay-sm sm:grid-cols-[2fr_1fr_0.6fr_0.9fr_0.9fr_1.1fr_1fr_1fr] sm:items-center"
+            >
+              <div className="font-medium text-clay-ink">{m.name}</div>
+              <div className="font-mono text-xs text-clay-ink2">{m.batch}</div>
+              <div className="text-right tabular-nums text-clay-ink sm:text-right">
+                <span className="text-[10px] uppercase text-clay-ink2 sm:hidden">Qty </span>
+                {m.quantity}
+              </div>
+              <div className="text-right tabular-nums text-clay-ink">
+                <span className="text-[10px] uppercase text-clay-ink2 sm:hidden">Unit </span>
+                {formatBDT(m.unit_price_bdt)}
+              </div>
+              <div className="text-right tabular-nums font-semibold text-clay-ink">
+                <span className="text-[10px] uppercase text-clay-ink2 sm:hidden">Value </span>
+                {formatBDT(value)}
+              </div>
+              <div className="text-clay-ink2">
+                <div className="text-clay-ink">{m.expiry_date}</div>
+                <div className="text-xs">{formatDaysLeft(left)}</div>
+              </div>
+              <div>
+                {m.status === "returned" ? (
+                  <span className="clay-pill inline-flex items-center bg-clay-surface px-3 py-1 text-xs font-medium text-clay-ink2 shadow-clay-sm">
+                    Returned
+                  </span>
+                ) : (
+                  <StatusBadge group={group} />
                 )}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+              </div>
+              {showReturnAction && (
+                <div className="text-right">
+                  {m.status === "active" && (
+                    <button
+                      onClick={() => onReturn?.(m.id)}
+                      disabled={pendingId === m.id}
+                      className="clay-pill bg-clay-surface px-3 py-1.5 text-xs font-medium text-clay-ink shadow-clay-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {pendingId === m.id ? "Returning…" : "Mark returned"}
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

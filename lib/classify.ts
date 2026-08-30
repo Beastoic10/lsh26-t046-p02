@@ -33,3 +33,45 @@ export const GROUP_LABEL: Record<ExpiryGroup, string> = {
   mid90: "Expiring within 90 days",
   safe: "Safe",
 };
+
+export interface MonthlyBucket {
+  label: string; // e.g. "Aug 2026"
+  value: number; // taka value at risk
+  count: number; // number of items expiring that month
+}
+
+/**
+ * Buckets active items by calendar month of expiry, starting with the
+ * current month, for `monthsAhead` months. Used by the six-month risk
+ * chart and the items-expiring histogram, so both read the same numbers.
+ * Items already expired earlier than the current month are intentionally
+ * excluded — this is a forward-looking view, not a restatement of the
+ * expired-group total.
+ */
+export function monthlyBuckets<T extends { expiry_date: string; quantity: number; unit_price_bdt: number }>(
+  items: T[],
+  monthsAhead: number = 6,
+  today: Date = new Date()
+): MonthlyBucket[] {
+  const start = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), 1));
+  const buckets: MonthlyBucket[] = Array.from({ length: monthsAhead }, (_, i) => {
+    const d = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth() + i, 1));
+    return {
+      label: d.toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" }),
+      value: 0,
+      count: 0,
+    };
+  });
+
+  for (const item of items) {
+    const expiry = new Date(item.expiry_date);
+    const monthIndex =
+      (expiry.getUTCFullYear() - start.getUTCFullYear()) * 12 + (expiry.getUTCMonth() - start.getUTCMonth());
+    if (monthIndex >= 0 && monthIndex < monthsAhead) {
+      buckets[monthIndex].value += item.quantity * item.unit_price_bdt;
+      buckets[monthIndex].count += 1;
+    }
+  }
+
+  return buckets;
+}
