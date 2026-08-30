@@ -28,9 +28,9 @@ export default function StockByExpiryCard({
   onSelect: (group: ExpiryGroup) => void;
 }) {
   return (
-    <div className="clay-surface flex h-full flex-col p-6">
+    <div className="clay-surface p-6">
       <h2 className="mb-5 text-sm font-medium text-clay-ink2">Stock by expiry</h2>
-      <div className="grid flex-1 grid-cols-2 gap-3 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {GROUP_ORDER.map((group) => {
           const count = byGroup[group].length;
           const active = groupFilter === group;
@@ -38,7 +38,7 @@ export default function StockByExpiryCard({
             <button
               key={group}
               onClick={() => onSelect(group)}
-              className={`flex flex-col justify-between gap-4 rounded-[1.25rem] p-4 text-left transition ${
+              className={`flex flex-col gap-4 rounded-[1.25rem] p-4 text-left transition ${
                 active ? "clay-surface-pressed" : "bg-clay-surface shadow-clay-sm hover:shadow-clay"
               }`}
             >

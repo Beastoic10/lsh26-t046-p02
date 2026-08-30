@@ -19,7 +19,7 @@ function formatCompactBDT(value: number): string {
 
 export default function RiskChart({ data }: { data: MonthlyBucket[] }) {
   return (
-    <div className="clay-surface h-full p-6">
+    <div className="clay-surface p-6">
       <h2 className="mb-4 text-sm font-medium text-clay-ink2">Value at risk, next 6 months</h2>
       <div className="h-56 w-full">
         <ResponsiveContainer width="100%" height="100%">

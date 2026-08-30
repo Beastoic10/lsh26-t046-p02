@@ -6,7 +6,7 @@ export default function ExpiringSoonCard({ buckets }: { buckets: MonthlyBucket[]
   const peak = buckets.reduce((max, b) => (b.count > max.count ? b : max), buckets[0]);
 
   return (
-    <div className="clay-surface flex h-full flex-col p-6">
+    <div className="clay-surface flex flex-col p-6">
       <div className="mb-4 flex items-start justify-between">
         <h2 className="text-sm font-medium text-clay-ink2">Items expiring, next 6 months</h2>
         {peak && peak.count > 0 && (
@@ -16,7 +16,7 @@ export default function ExpiringSoonCard({ buckets }: { buckets: MonthlyBucket[]
         )}
       </div>
       <p className="mb-4 text-3xl font-semibold tabular-nums text-clay-ink">{totalItems}</p>
-      <div className="mt-auto">
+      <div className="mt-4">
         <DotHistogram data={buckets} colorClass="bg-clay-steel" />
       </div>
     </div>

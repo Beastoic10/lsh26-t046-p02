@@ -17,7 +17,7 @@ export default function InsightCard({
 }) {
   return (
     <div
-      className="relative flex h-full flex-col overflow-hidden p-6 text-clay-surface shadow-clay"
+      className="relative flex flex-col overflow-hidden p-6 text-clay-surface shadow-clay"
       style={{
         borderRadius: "1.75rem",
         background: "linear-gradient(135deg, #8F3B33 0%, #C1544A 55%, #D9A24B 100%)",
@@ -37,7 +37,7 @@ export default function InsightCard({
       <p className="mt-2 text-sm font-medium leading-snug text-white/90">
         of active stock value is expired or expiring within 30 days.
       </p>
-      <p className="mt-auto pt-3 text-xs leading-relaxed text-white/75">
+      <p className="mt-4 text-xs leading-relaxed text-white/75">
         {atRiskItemCount} item{atRiskItemCount === 1 ? "" : "s"} worth {formatBDT(atRiskValue)} need
         action now.
       </p>
