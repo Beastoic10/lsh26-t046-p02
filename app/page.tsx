@@ -159,7 +159,7 @@ export default function DashboardPage() {
               onSelect={(group) => setGroupFilter((prev) => (prev === group ? null : group))}
             />
           </div>
-          <div className="grid h-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1 lg:auto-rows-fr">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
             <ValueAtRiskCard expiredValue={valueOf(byGroup.expired)} soonValue={valueOf(byGroup.soon30)} />
             <InsightCard atRiskPct={atRiskPct} atRiskItemCount={atRiskItemCount} atRiskValue={atRiskValue} />
           </div>
@@ -170,7 +170,7 @@ export default function DashboardPage() {
           <div className="lg:col-span-2">
             <RiskChart data={monthly} />
           </div>
-          <div className="grid h-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1 lg:auto-rows-fr">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
             <ExpiringSoonCard buckets={monthly} />
             <ActiveStockCard byGroup={byGroup} />
           </div>

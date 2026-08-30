@@ -18,12 +18,12 @@ export default function ValueAtRiskCard({
   const soonPct = total > 0 ? (soonValue / total) * 100 : 0;
 
   return (
-    <div className="clay-surface flex h-full flex-col p-6">
+    <div className="clay-surface p-6">
       <h2 className="mb-2 text-sm font-medium text-clay-ink2">Value at risk</h2>
       <p className="text-3xl font-semibold tracking-tight text-clay-ink">{formatBDT(total)}</p>
       <p className="mt-1 text-xs text-clay-ink2">Expired + expiring within 30 days</p>
 
-      <div className="mt-6 flex-1 space-y-4">
+      <div className="mt-6 space-y-4">
         <div>
           <div className="mb-1.5 flex items-center justify-between text-xs">
             <span className="font-medium text-clay-ink2">Already expired</span>

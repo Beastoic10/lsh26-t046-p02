@@ -23,7 +23,7 @@ export default function ActiveStockCard({ byGroup }: { byGroup: Record<ExpiryGro
   }));
 
   return (
-    <div className="clay-surface flex h-full flex-col p-6">
+    <div className="clay-surface flex flex-col p-6">
       <div className="mb-4 flex items-start justify-between">
         <h2 className="text-sm font-medium text-clay-ink2">Active stock</h2>
         <span className="clay-pill bg-clay-surface2 px-2.5 py-1 text-xs font-medium text-clay-ink2 shadow-none">
@@ -31,7 +31,7 @@ export default function ActiveStockCard({ byGroup }: { byGroup: Record<ExpiryGro
         </span>
       </div>
       <p className="mb-4 text-3xl font-semibold tabular-nums text-clay-ink">{total}</p>
-      <div className="mt-auto grid grid-cols-10 gap-1.5">
+      <div className="mt-4 grid grid-cols-10 gap-1.5">
         {composition.flatMap(({ group, dots }) =>
           Array.from({ length: dots }, (_, i) => (
             <span
