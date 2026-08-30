@@ -16,19 +16,19 @@
   "requirements": {
     "R1": {
       "status": "complete",
-      "evidence": "Page, route, feature or source-file path"
+      "evidence": "https://lsh26-t046-p02-l2gx7l7v5-beastoic10s-projects.vercel.app/"
     },
     "R2": {
       "status": "complete",
-      "evidence": "Page, route, feature or source-file path"
+      "evidence": "https://lsh26-t046-p02-l2gx7l7v5-beastoic10s-projects.vercel.app/"
     },
     "R3": {
-      "status": "partial",
-      "evidence": "Explain what works and what remains"
+      "status": "complete",
+      "evidence": "https://lsh26-t046-p02-l2gx7l7v5-beastoic10s-projects.vercel.app/"
     },
     "R4": {
-      "status": "not_attempted",
-      "evidence": "Not attempted"
+      "status": "complete",
+      "evidence": "https://lsh26-t046-p02-l2gx7l7v5-beastoic10s-projects.vercel.app/"
     }
   },
   "team_members": [
